@@ -1,0 +1,120 @@
+[{
+  "_id": {
+    "$oid": "69d47383fd29de3f454a1189"
+  },
+  "nome": "Cliente 1",
+  "endereco": "Rua 1, 10",
+  "pedidos": {
+    "pizza": 1,
+    "hamburguer": 2
+  },
+  "cpf": "00000000001"
+},
+{
+  "_id": {
+    "$oid": "69d47383fd29de3f454a118a"
+  },
+  "nome": "Cliente 2",
+  "endereco": "Rua 2, 20",
+  "pedidos": {
+    "pizza": 2,
+    "hamburguer": 3
+  },
+  "cpf": "00000000002"
+},
+{
+  "_id": {
+    "$oid": "69d47383fd29de3f454a118b"
+  },
+  "nome": "Cliente 3",
+  "endereco": "Rua 3, 30",
+  "pedidos": {
+    "pizza": 3,
+    "hamburguer": 4
+  },
+  "cpf": "00000000003"
+},
+{
+  "_id": {
+    "$oid": "69d47383fd29de3f454a118c"
+  },
+  "nome": "Cliente 4",
+  "endereco": "Rua 4, 40",
+  "pedidos": {
+    "pizza": 4,
+    "hamburguer": 5
+  },
+  "cpf": "00000000004"
+},
+{
+  "_id": {
+    "$oid": "69d47383fd29de3f454a118d"
+  },
+  "nome": "Cliente 5",
+  "endereco": "Rua 5, 50",
+  "pedidos": {
+    "pizza": 5,
+    "hamburguer": 6
+  },
+  "cpf": "00000000005"
+},
+{
+  "_id": {
+    "$oid": "69d47383fd29de3f454a118e"
+  },
+  "nome": "Cliente 6",
+  "endereco": "Rua 6, 60",
+  "pedidos": {
+    "pizza": 6,
+    "hamburguer": 7
+  },
+  "cpf": "00000000006"
+},
+{
+  "_id": {
+    "$oid": "69d47383fd29de3f454a118f"
+  },
+  "nome": "Cliente 7",
+  "endereco": "Rua 7, 70",
+  "pedidos": {
+    "pizza": 7,
+    "hamburguer": 8
+  },
+  "cpf": "00000000007"
+},
+{
+  "_id": {
+    "$oid": "69d47383fd29de3f454a1190"
+  },
+  "nome": "Cliente 8",
+  "endereco": "Rua 8, 80",
+  "pedidos": {
+    "pizza": 8,
+    "hamburguer": 9
+  },
+  "cpf": "00000000008"
+},
+{
+  "_id": {
+    "$oid": "69d47383fd29de3f454a1191"
+  },
+  "nome": "Cliente 9",
+  "endereco": "Rua 9, 90",
+  "pedidos": {
+    "pizza": 9,
+    "hamburguer": 10
+  },
+  "cpf": "00000000009"
+},
+{
+  "_id": {
+    "$oid": "69d47383fd29de3f454a1192"
+  },
+  "nome": "Cliente 10",
+  "endereco": "Rua 10, 100",
+  "pedidos": {
+    "pizza": 10,
+    "hamburguer": 11
+  },
+  "cpf": "000000000010"
+}]

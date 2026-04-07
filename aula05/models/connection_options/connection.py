@@ -17,6 +17,7 @@ class DBConnectionHandler:
     def connect_to_db(self):
         try:
             self.__client = MongoClient(self.__connection_string)
+            self.__client.admin.command('ping')
             self.__db_connection = self.__client[self.__database_name]
             print("Conexão bem-sucedida ao MongoDB!")
         except Exception as e:
@@ -29,6 +30,6 @@ class DBConnectionHandler:
         return self.__client
 
     def disconnect(self):
-        if self.client:
-            self.client.close()
+        if self.__client:
+            self.__client.close()
             print("Desconectado do MongoDB.")
