@@ -28,7 +28,20 @@ db_connection = db_handle.get_db_connection()
 
 my_collection_repository = myProjectRepository(db_connection)
 
-my_collection_repository.select_many()
+response = my_collection_repository.select_many({"nome": "Cliente 2", "pedidos.pizza": 2})
+# print(response)
+print()
+
+response2 = my_collection_repository.select_one({"nome": "Cliente 2"})
+# print(response2)
+
+# my_collection_repository.select_if_property_exists()
+
+# my_collection_repository.select_many_order()
+
+# my_collection_repository.select_or()
+
+my_collection_repository.select_by_object_id()
 
 # # Inserir um documento
 # my_collection_repository.insert_one(

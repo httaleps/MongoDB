@@ -1,7 +1,7 @@
-mongo_db_infos = {
-    "HOST": "localhost",
-    "PORT": "27017",
-    "USERNAME": "admin",
-    "PASSWORD": "admin",
-    "DB_NAME": "my_database" 
-}
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+MONGO_URI = os.getenv("MONGO_URI")
+DATABASE_NAME = os.getenv("DATABASE_NAME")
