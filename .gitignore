@@ -1,0 +1,4 @@
+aula08/.env
+__pycache__/
+*.pyc
+.env
