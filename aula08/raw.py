@@ -1,23 +1,39 @@
-from pymongo import MongoClient
+## Tales Henrique Silveira de Sousa
 
-connection_string = "mongodb://admin:admin@localhost:27017/?authSource=admin"
-client = MongoClient(connection_string)
-db_connection = client["my_database"]
+from models.connection_options.connection import get_database
+from models.repository.projeto_repository import myProjectRepository
 
-print(db_connection)
-print()
-collection = db_connection.get_collection("my_collection")
+# Instancia o repositório
+db = get_database()
+repository = myProjectRepository(db)
 
-print(collection)
-print()
+# Busca com filtro
+print("=== Filtro por nome ===")
+result = repository.select_many({"nome": "Cliente 1"})
+for doc in result: print(doc)
 
-search_filter = {"estou": "aqui"}
-response = collection.find(search_filter)
+# Busca um documento
+print("\n=== Select One ===")
+result = repository.select_one({"nome": "Cliente 2"})
+print(result)
 
-for registry in response: print(registry)
+# Busca se propriedade existe
+print("\n=== Propriedade existe ===")
+repository.select_if_property_exists()
 
-collection.insert_one({
-    "Estou": "Inserindo",
-    "Números": [1, 2, 3, 4, 5]
-    })
-print("Documento inserido com sucesso!")
+# Busca com OR
+print("\n=== Select OR ===")
+repository.select_or()
+
+# Busca com ordenação
+print("\n=== Ordenação ===")
+repository.select_many_order()
+
+# Paginação
+print("\n=== Paginação - Página 1 ===")
+result = repository.select_with_pagination(page=1, page_size=3)
+for doc in result: print(doc)
+
+print("\n=== Paginação - Página 2 ===")
+result = repository.select_with_pagination(page=2, page_size=3)
+for doc in result: print(doc)

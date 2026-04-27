@@ -1,8 +1,7 @@
+# Tales Henrique Silveira de Sousa
+
 from bson.objectid import ObjectId
 from typing import Dict, List
-
-from run import response
-
 
 class myProjectRepository:
     def __init__(self, db_connection) -> None:
@@ -35,21 +34,20 @@ class myProjectRepository:
 
     def select_many_order(self):
         data = self.__collection.find(
-            {"nome": "Cliente 2"},  # Filtro
-            {"cpf": 0, "endereco": 0, "_id": 0}  # Opções de retorno
+            {"nome": "Tales Sousa"},  # ✅ nome que existe nos seus dados
+            {"cpf": 0, "endereco": 0, "_id": 0}
         ).sort([("pedidos.pizza", 1)])
 
-        response = []
         for elem in data: print(elem)
 
     def select_or(self) -> None:
-        data = self.__collection.find({ "$or": [{"nome": "Cliente 1"}, {"pedidos.batata frita": { "$exists" : True }}]})
+        data = self.__collection.find({"$or": [{"nome": "Tales Sousa"}, {"pedidos.batata frita": {"$exists": True}}]})
         for elem in data:
             print(elem)
             print()
 
     def select_by_object_id(self) -> None:
-        data = self.__collection.find({"_id": ObjectId("69d47383fd29de3f454a1189")})
+        data = self.__collection.find({"_id": ObjectId("69eeca74c8ef220c60ba6e44")})
         for elem in data: print(elem)
 
     def select_with_pagination(self, page: int, page_size: int) -> List[Dict]:

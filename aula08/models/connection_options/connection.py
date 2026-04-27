@@ -1,22 +1,18 @@
 from pymongo import MongoClient
 from .mongo_db_configs import MONGO_URI, DATABASE_NAME
 
+
 def get_database():
     client = MongoClient(MONGO_URI)
     return client[DATABASE_NAME]
 
+
 class DBConnectionHandler:
     def __init__(self) -> None:
-        self.__connection_string = 'mongodb://{username}:{password}@{host}:{port}/?authSource=admin'.format(
-            username=mongo_db_infos["USERNAME"],
-            password=mongo_db_infos["PASSWORD"],
-            host=mongo_db_infos["HOST"],
-            port=mongo_db_infos["PORT"]
-        )
-        self.__database_name = mongo_db_infos["DB_NAME"]
+        self.__connection_string = MONGO_URI
+        self.__database_name = DATABASE_NAME
         self.__client = None
         self.__db_connection = None
-
 
     def connect_to_db(self):
         try:
@@ -29,7 +25,7 @@ class DBConnectionHandler:
 
     def get_db_connection(self):
         return self.__db_connection
-    
+
     def get_db_client(self):
         return self.__client
 
