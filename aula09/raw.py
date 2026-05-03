@@ -7,33 +7,57 @@ from models.repository.projeto_repository import myProjectRepository
 db = get_database()
 repository = myProjectRepository(db)
 
-# Busca com filtro
-print("=== Filtro por nome ===")
-result = repository.select_many({"nome": "Cliente 1"})
-for doc in result: print(doc)
+# -------------------------------------------------------
+# INSERT - garante que os documentos existem para os testes
+# -------------------------------------------------------
+print("=== Inserindo documentos de teste ===")
 
-# Busca um documento
-print("\n=== Select One ===")
-result = repository.select_one({"nome": "Cliente 2"})
-print(result)
+repository.insert_bulk([
+    {
+        "nome": "Tales Sousa",
+        "profissao": "Estudante de TI",
+        "idade": 22,
+        "tag": "projeto_tales",
+        "pedidos": {"pizza": "calabresa", "batata frita": "media"}
+    },
+    {
+        "nome": "Tales Henrique",
+        "profissao": "Estagiário",
+        "idade": 21,
+        "tag": "projeto_tales",
+        "pedidos": {"pizza": "frango", "refrigerante": "lata"}
+    }
+])
+print("Documentos inseridos com sucesso.")
 
-# Busca se propriedade existe
-print("\n=== Propriedade existe ===")
-repository.select_if_property_exists()
+# -------------------------------------------------------
+# SELECT - confirma os dados antes de editar
+# -------------------------------------------------------
+print("\n=== Documentos antes do update ===")
+resultado = repository.select_many({"tag": "projeto_tales"})
+for doc in resultado:
+    print(doc)
 
-# Busca com OR
-print("\n=== Select OR ===")
-repository.select_or()
+# -------------------------------------------------------
+# UPDATE - atualiza profissão do Tales Sousa
+# -------------------------------------------------------
+print("\n=== Executando update ===")
+repository.update_document(
+    {"nome": "Tales Sousa"},
+    {"profissao": "Desenvolvedor Full Stack", "tag": "projeto_tales_atualizado"}
+)
 
-# Busca com ordenação
-print("\n=== Ordenação ===")
-repository.select_many_order()
+print("\n=== Documento após update ===")
+resultado = repository.select_one({"nome": "Tales Sousa"})
+print(resultado)
 
-# Paginação
-print("\n=== Paginação - Página 1 ===")
-result = repository.select_with_pagination(page=1, page_size=3)
-for doc in result: print(doc)
+# -------------------------------------------------------
+# DELETE - remove o documento do Tales Henrique
+# -------------------------------------------------------
+print("\n=== Executando delete ===")
+repository.delete_document({"nome": "Tales Henrique"})
 
-print("\n=== Paginação - Página 2 ===")
-result = repository.select_with_pagination(page=2, page_size=3)
-for doc in result: print(doc)
+print("\n=== Documentos após delete (deve restar apenas Tales Sousa) ===")
+resultado = repository.select_many({"tag": {"$in": ["projeto_tales", "projeto_tales_atualizado"]}})
+for doc in resultado:
+    print(doc)
